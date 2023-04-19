@@ -52,7 +52,7 @@ const Login = () => {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
         setErrMsg("Missing username or password");
-      } else if (err.response?.status == 401) {
+      } else if (err.response?.status === 401) {
         setErrMsg("Unauthorized, invalid username or password");
       } else {
         setErrMsg("Login Failed");
@@ -99,7 +99,7 @@ const Login = () => {
       <p>
         Create an account ? <br />
         <span className="line">
-          <a href="#">Sign Up</a>
+          <Link to={'/register'}>Sign Up</Link>
         </span>
       </p>
     </section>
