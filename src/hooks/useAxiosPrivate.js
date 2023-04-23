@@ -12,7 +12,7 @@ const useAxiosPrivate = ()=> {
         const requestIntercerpt = axiosPrivate.interceptors.request.use(
             config => {
                 if(!config.headers['Authorization']) { // first attempt, not retry
-                    console.log("first attempt, not retry");
+                    console.log(config);
                     config.headers['Authorization'] = "Bearer "+auth?.accessToken;
                 }
                 
@@ -27,14 +27,16 @@ const useAxiosPrivate = ()=> {
                 const prevRequest = error?.config;
                 if(error?.response?.status === 403 && !prevRequest?.sent) {
 
-                    console.log("if there is any error, line expiary if AccessToken");
+                    console.log("if there is any error, like expiary of AccessToken");
                     console.log(prevRequest);
                     prevRequest.sent = true;
                     const newAccessToken = await refresh();
                     prevRequest.headers['Authorization'] = "Bearer "+newAccessToken;
                     return axiosPrivate(prevRequest);
                 }
-                return Promise.reject(error);
+                else {
+                    return Promise.reject(error);
+                }
             }
         )
 
