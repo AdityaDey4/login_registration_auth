@@ -6,3 +6,4 @@ Login, registration and authentication using react
 3. Protected Routes
 4. JWT Authentication
 5. Persistent Login
+6. Login Input Hooks
